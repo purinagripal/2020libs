@@ -65,7 +65,7 @@
                                         alert('fetch complete');
                                         console.log( 'router - fetch complete, oculta cargando' );
                                         console.log(eventosList);
-                                        alert(eventosList);
+                                        alert(JSON.stringify(eventosList));
                                         eventosList.trigger("fcomplete");
                                         
                                         // renderiza eventos una vez descargados
@@ -129,14 +129,14 @@
         // console.log(navigator);
         
         if (navigator.notification) { // Override default HTML alert with native dialog
-            window.alert = function (message) {
-                navigator.notification.alert(
-                    message,    // message
-                    null,       // callback
-                    "Pella de Ocio", // title
-                    'OK'        // buttonName
-                );
-            };
+            // window.alert = function (message) {
+            //     navigator.notification.alert(
+            //         message,    // message
+            //         null,       // callback
+            //         "Pella de Ocio", // title
+            //         'OK'        // buttonName
+            //     );
+            // };
         }
         
         // Now safe to use device APIs
