@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+<!--        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com http://test-wp.mepwebs.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/pageslider.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        
+        <title>Hello World</title>
+    </head>
+    <body>
+        <script id="prefer-tpl" type="text/template">
+            <div class="header">
+                <div class="head_sup">
+                    <a class="boton_inicio pull-left"><i class="fa fa-home"></i></a>
+
+                    <img src="logo.png" />
+
+                    <div class="menu_drop dropdown pull-right">
+                        <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
+                            <li><a class="link_eventos">Eventos</a></li>
+                            <li><a class="link_locales" >Organizadores</a></li>
+                            <li><a class="link_nuevos" ><i class="fa fa-exclamation-circle"></i> Nuevos eventos</a></li>
+                            <li><a class="link_favoritos" ><i class="fa fa-heart"></i> Favoritos</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a onclick="window.plugins.socialsharing.share('Descarga Pella de Ocio', 'Pella de Ocio', null, 'http://app.pelladeocio.com')"><i class="fa fa-share-alt"></i> Compartir App</a></li>
+                            <li><a class="link_acerca" ><i class="fa fa-info"></i> Acerca de ...</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="head_inf favoritos">
+                    <div class="col-xs-12 selec_container" >
+                        Preferencias
+                    </div>
+                </div>
+            </div>
+
+            <div class="container wrapper-absolute-80 evento-detalle">
+                <div class="row cuadro prefer">
+                    <div class="col-xs-12 intro">
+                        <p>Pella de Ocio te avisa cuando se publica un nuevo evento.</p>
+                        <p>Selecciona las categorías y municipios de los que quieres recibir notificaciones.</p>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 prefer-categorias">
+                        <h5>Categorías:</h5>
+                        <ul class="list-group">
+                            <li id="cat1" class="sel_cat list-group-item" data-id="1">
+                                <div class="row">
+                                    <div class="col-xs-2 ico-cat" ><i class="fa fa-music" aria-hidden="true"></i></div>
+                                    <div class="col-xs-8">Música</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li id="cat2" class="sel_cat list-group-item" data-id="2">
+                                <div class="row">
+                                    <div class="col-xs-2 ico-cat" ><i class="fa fa-star" aria-hidden="true"></i></div>
+                                    <div class="col-xs-8">Espectáculos</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li id="cat3" class="sel_cat list-group-item" data-id="3">
+                                <div class="row">
+                                    <div class="col-xs-2 ico-cat" ><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
+                                    <div class="col-xs-8">Talleres y cursos</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li id="cat6" class="sel_cat list-group-item" data-id="6">
+                                <div class="row">
+                                    <div class="col-xs-2 ico-cat" ><i class="fa fa-child" aria-hidden="true"></i></div>
+                                    <div class="col-xs-8">Infantiles</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li id="cat5" class="sel_cat list-group-item" data-id="5">
+                                <div class="row">
+                                    <div class="col-xs-2 ico-cat" ><i class="fa fa-bicycle" aria-hidden="true"></i></div>
+                                    <div class="col-xs-8">Deportes</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li id="cat4" class="sel_cat list-group-item" data-id="4">
+                                <div class="row">
+                                    <div class="col-xs-2 ico-cat" ><i class="fa fa-comment" aria-hidden="true"></i></div>
+                                    <div class="col-xs-8">Encuentros y exposiciones</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>       
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 prefer-lugares">
+                        <h5>Municipio:</h5>
+                        <ul class="list-group">
+                            <li id="ciudad1" class="sel_ciudad list-group-item" data-id="1">
+                                <div class="row">
+                                    <div class="col-xs-10">Antigua</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li id="ciudad2" class="sel_ciudad list-group-item" data-id="2">
+                                <div class="row">
+                                    <div class="col-xs-10">Betancuria</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li id="ciudad3" class="sel_ciudad list-group-item" data-id="3">
+                                <div class="row">
+                                    <div class="col-xs-10">La Oliva</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li id="ciudad4" class="sel_ciudad list-group-item" data-id="4">
+                                <div class="row">
+                                    <div class="col-xs-10">Pájara</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>                    
+                            <li id="ciudad6" class="sel_ciudad list-group-item" data-id="6">
+                                <div class="row">
+                                    <div class="col-xs-10">Puerto del Rosario</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li id="ciudad5" class="sel_ciudad list-group-item" data-id="5">
+                                <div class="row">
+                                    <div class="col-xs-10">Tuineje</div>
+                                    <div class="col-xs-2" ><i class="fa fa-check"></i></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-xs-12">
+                        <button id="boton_guardar" class="btn btn-pella btn-lg btn-block" type="button" >Guardar</button>
+                        <div id="cargando" >
+                            <p>Guardando preferencias...</p>
+                            <p><img src="assets/img/saving.gif" /></p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+
+        <script id="home-tpl" type="text/template">
+            <div class="header">
+                <div class="head_sup">
+                    
+                </div>
+                <div class="head_inf">
+                                
+                </div>
+            </div>
+
+            <div class="container-fluid wrapper-absolute-80 cargando_eventos">
+                <p>Cargando eventos...</p>
+                <p><img src="assets/img/cargando.gif" /></p>
+            </div>
+
+            <div class="container-fluid guiaeventos wrapper-absolute-80 eventos_cargados">
+
+            </div>
+        </script>
+
+        <script id="eventos-list-tpl" type="text/template">
+            <div class="row cuadro categ_{{id_categoria}}" data-id="{{id_evento}}" >
+                
+                <div class="col-xs-6 info">  
+                    <h5>{{title}}</h5>
+                    <div class="eventor-ciudad">
+                        <p class="nombre-eventor">{{{content}}}</p>
+                        <p class="ciudad"><i class="fa fa-map-marker"></i> {{id_evento}}</p>
+                    </div>
+                    <i class="notif fa fa-exclamation-circle"></i> 
+                </div>
+
+            </div>
+        </script>
+
+        <script id="favoritos-tpl" type="text/template">
+            <div class="header">
+                <div class="head_sup">
+                    <a class="boton_inicio pull-left"><i class="fa fa-home"></i></a>
+                    <img src="logo.png" />
+
+                    <div class="menu_drop dropdown pull-right">
+                        <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
+                            <li><a class="link_eventos">Eventos</a></li>
+                            <li><a class="link_nuevos" ><i class="fa fa-exclamation-circle"></i> Nuevos eventos</a></li>
+                            <li><a class="link_locales" >Organizadores</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a class="link_prefer" ><i class="fa fa-cog"></i> Preferencias</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a onclick="window.plugins.socialsharing.share('Descarga Pella de Ocio', 'Pella de Ocio', null, 'http://app.pelladeocio.com')"><i class="fa fa-share-alt"></i> Compartir App</a></li>
+                            <li><a class="link_acerca" ><i class="fa fa-info"></i> Acerca de ...</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="head_inf favoritos">
+                    <div class="col-xs-12 selec_container" >
+                        Favoritos
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid wrapper-absolute-80 cargando_eventos">
+                <p>Cargando eventos...</p>
+                <p><img src="assets/img/cargando.gif" /></p>
+            </div>
+
+            <div class="container-fluid guiaeventos wrapper-absolute-80 eventos_cargados">
+
+            </div>    
+        </script>
+
+        <script id="nuevos-tpl" type="text/template">
+            <div class="header">
+                <div class="head_sup">
+                    <a class="boton_inicio pull-left"><i class="fa fa-home"></i></a>
+                    <img src="logo.png" />
+
+                    <div class="menu_drop dropdown pull-right">
+                        <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
+                            <li><a class="link_eventos">Eventos</a></li>
+                            <li><a class="link_locales" >Organizadores</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a class="link_prefer" ><i class="fa fa-cog"></i> Preferencias</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a onclick="window.plugins.socialsharing.share('Descarga Pella de Ocio', 'Pella de Ocio', null, 'http://app.pelladeocio.com')"><i class="fa fa-share-alt"></i> Compartir App</a></li>
+                            <li><a class="link_acerca" ><i class="fa fa-info"></i> Acerca de ...</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="head_inf favoritos">
+                    <div class="col-xs-12 selec_container" >
+                        Nuevos eventos
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid wrapper-absolute-80 cargando_eventos">
+                <p>Cargando eventos...</p>
+                <p><img src="assets/img/cargando.gif" /></p>
+            </div>
+
+            <div class="wrapper-absolute-80 eventos_cargados">
+                <div class="container-fluid guiaeventos">
+
+                </div>
+                <div class="container-fluid">
+                    <div class="col-xs-12">
+                        <button id="boton_todos" class="btn btn-pella btn-lg btn-block" type="button" >Ver todos los eventos</button>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <script id="evento-tpl" type="text/template">
+            <div class="header-50">
+                <div class="head_sup">
+                    <a class="boton_atras pull-left"><i class="fa fa-arrow-left"></i></a>
+                    <a class="boton_inicio pull-left"><i class="fa fa-home"></i></a>
+
+                    <img src="simbolo.png" />
+
+                    <div class="menu_drop dropdown pull-right">
+                        <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
+                            <li><a class="link_eventos">Eventos</a></li>
+                            <li><a class="link_locales" >Organizadores</a></li>
+                            <li><a class="link_nuevos" ><i class="fa fa-exclamation-circle"></i> Nuevos eventos</a></li>
+                            <li><a class="link_favoritos" ><i class="fa fa-heart"></i> Favoritos</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a class="link_prefer" ><i class="fa fa-cog"></i> Preferencias</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a onclick="window.plugins.socialsharing.share('Descarga Pella de Ocio', 'Pella de Ocio', null, 'http://app.pelladeocio.com')"><i class="fa fa-share-alt"></i> Compartir App</a></li>
+                            <li><a class="link_acerca" ><i class="fa fa-info"></i> Acerca de ...</a></li>
+                        </ul>
+                    </div>
+                    <a class="pull-right" onclick="window.plugins.socialsharing.share('{{fecha_dm.dia}} {{fecha_dm.mes}} - {{title}}, más info...', 'Pella de Ocio', null, 'http://pelladeocio.com/evento-{{id_evento}}')"><i class="fa fa-share-alt"></i></a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="container wrapper-absolute-50 evento-detalle">
+                <div class="row cuadro categ_{{id_categoria}}">
+                    <div class="col-xs-12 col-sm-6 bloq-izq" >
+                        <div class="row">
+                            <div class="col-xs-12 titulo-imagen">
+                                <h4>{{title}}</h4>
+                                <img src="http://pelladeocio.com/uploads/medias/{{image}}" class="img-responsive" />
+                                <div class="date">
+                                    <span class="ico-categ"></span>
+                                    {{#if f_fin}}
+                                        <!-- evento varios dias -->
+                                        <span class="ndia">{{fecha_dm.dia}} {{fecha_dm.mes}}</span>
+                                        <span class="ndiafin">{{f_fin_dm.dia}} {{f_fin_dm.mes}}</span>
+                                    {{else}}
+                                        <!-- evento 1 dia -->
+                                        <span class="ndia">{{fecha_dm.dia}} {{fecha_dm.mes}}</span>
+                                        <span class="hora">{{fecha_dm.diasemana}}  <i class="fa fa-clock-o"></i> {{hora_format}} h</span>
+                                    {{/if}}
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <!-- si tiene horario le deja más espacio al horario -->
+                            {{#if horario}}
+                                <div class="col-xs-4">
+                                    <p class="nombre-eventor">{{Eventor.first_name}}</p>
+                                    <p class="ciudad"><i class="fa fa-map-marker"></i> {{localidad}}</p>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="datos-evento">
+                                        <p>{{{horarioBr}}}</p>
+                                        {{#if precio}}
+                                            <p>{{precio}}</p>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            {{else}}
+                                {{#if precio}}
+                                    <div class="col-xs-8">
+                                        <p class="nombre-eventor">{{Eventor.first_name}}</p>
+                                        <p class="ciudad"><i class="fa fa-map-marker"></i> {{localidad}}</p>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="datos-evento-grande">
+                                            <p>{{precio}}</p>
+                                        </div>
+                                    </div>
+                                {{else}}
+                                    <div class="col-xs-12">
+                                        <p class="nombre-eventor">{{Eventor.first_name}}</p>
+                                        <p class="ciudad"><i class="fa fa-map-marker"></i> {{localidad}}, {{Ciudad.nombre}}</p>
+                                    </div>                             
+                                {{/if}}
+
+                            {{/if}}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div> <!-- fin bloq-izq -->
+
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="descr-evento">
+                            <p>{{{descripcionBr}}}</p>
+
+                            {{#if web_link}}
+                                <a class="link_web" >{{web_link}}</a>
+                            {{/if}}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="col-xs-12 direccion-evento">
+                        <p class="direcc">
+                            <span class="calle">{{direccion}}. {{localidad}}, {{Ciudad.nombre}}</span>
+                            <span class="fullscreen"><a class="link_bigmap"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a></span>
+                            <div class="clearfix"></div>
+                        </p>
+                        <div id="eve-map-canvas" ></div>
+                    </div>  
+                    {{#if Eventor.noAdmin}}
+                        <div class="col-xs-12 organizador-evento">
+                            <div class="local_link" data-id="{{Eventor.id_user}}">
+                                <span class="nombre-local">{{Eventor.first_name}} </span>
+                                <span class="icono"><i class="fa fa-info-circle"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        </script>
+
+        <script id="locales-tpl" type="text/template">
+            <div class="header">
+                <div class="head_sup">
+                    <a class="boton_inicio pull-left"><i class="fa fa-home"></i></a>
+                    <img src="logo.png" />
+
+                    <div class="menu_drop dropdown pull-right">
+                        <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
+                            <li><a class="link_eventos">Eventos</a></li>
+                            <li><a class="link_nuevos" ><i class="fa fa-exclamation-circle"></i> Nuevos eventos</a></li>
+                            <li><a class="link_favoritos" ><i class="fa fa-heart"></i> Favoritos</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a class="link_prefer" ><i class="fa fa-cog"></i> Preferencias</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a onclick="window.plugins.socialsharing.share('Descarga Pella de Ocio', 'Pella de Ocio', null, 'http://app.pelladeocio.com')"><i class="fa fa-share-alt"></i> Compartir App</a></li>
+                            <li><a class="link_acerca" ><i class="fa fa-info"></i> Acerca de ...</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="head_inf">
+                    <div class="col-xs-12 selec_container" >
+                        <div class="dropdown selec_drop pull-right">
+                          <button class="dropdown-toggle" id="dropdownMenuCiudad" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Municipio <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuCiudad">
+                            <li><a class="filt_zona" data-id="1">Antigua</a></li>
+                            <li><a class="filt_zona" data-id="2">Betancuria</a></li>
+                            <li><a class="filt_zona" data-id="3">La Oliva</a></li>
+                            <li><a class="filt_zona" data-id="4">Pájara</a></li>
+                            <li><a class="filt_zona" data-id="6">Puerto del Rosario</a></li>
+                            <li><a class="filt_zona" data-id="5">Tuineje</a></li>
+                            <li><a class="filt_zona" data-id="0">Todas</a></li>
+                          </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid guiaeventos lista-locales wrapper-absolute-80">
+                {{#each this}}
+                    <div class="row cuadro" data-id="{{id_user}}" >
+                        <div class="col-xs-4 imagen">
+                            <img id="imagen_{{id_user}}" src="http://pelladeocio.com/uploads/medias/{{image}}" />
+                        </div>
+                        <div class="col-xs-8 info">
+                            <h4>{{first_name}}</h4>
+                            <div class="eventor-ciudad">
+                                <p class="ciudad"><i class="fa fa-map-marker"></i> {{localidad}}</p>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </script>
+
+        <script id="local-tpl" type="text/template">
+            <div class="header-50">
+                <div class="head_sup">
+                    <a class="boton_atras pull-left"><i class="fa fa-arrow-left"></i></a>
+                    <a class="boton_inicio pull-left"><i class="fa fa-home"></i></a>
+
+                    <img src="simbolo.png" />
+
+                    <div class="menu_drop dropdown pull-right">
+                        <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
+                            <li><a class="link_eventos">Eventos</a></li>
+                            <li><a class="link_locales" >Organizadores</a></li>
+                            <li><a class="link_nuevos" ><i class="fa fa-exclamation-circle"></i> Nuevos eventos</a></li>
+                            <li><a class="link_favoritos" ><i class="fa fa-heart"></i> Favoritos</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a class="link_prefer" ><i class="fa fa-cog"></i> Preferencias</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a onclick="window.plugins.socialsharing.share('Descarga Pella de Ocio', 'Pella de Ocio', null, 'http://app.pelladeocio.com')"><i class="fa fa-share-alt"></i> Compartir App</a></li>
+                            <li><a class="link_acerca" ><i class="fa fa-info"></i> Acerca de ...</a></li>
+                        </ul>
+                    </div>
+                    <a class="pull-right" onclick="window.plugins.socialsharing.share('{{Eventor.first_name}}, pincha en el enlace para más info.', 'Pella de Ocio', null, 'http://app.pelladeocio.com')"><i class="fa fa-share-alt"></i></a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="wrapper-absolute-50">
+                <div class="container evento-detalle localDetails">
+                    <!-- local-details-tpl -->
+                </div>
+                <div class="container-fluid guiaeventos eventoslocal">
+                    <h2>Próximos eventos</h2>
+                    <!-- eventos -->
+                </div>
+            </div>
+        </script>
+
+        <script id="local-details-tpl" type="text/template">
+            <div class="row cuadro">
+                <div class="col-xs-12 col-sm-6 bloq-izq" >
+                    <div class="row">
+                        <div class="col-xs-12 titulo-imagen">
+                            <h4>{{Eventor.first_name}}</h4>
+                            <img src="http://pelladeocio.com/uploads/medias/{{Eventor.image}}" class="img-responsive" />
+                        </div>
+                        <div class="col-xs-12 detalle-local">
+                            {{#if Eventor.horario}}
+                                <p class="horario-local">{{{Eventor.horarioBr}}}</p>
+                            {{/if}}
+                        </div>
+                        {{#if Eventor.telefono}}
+                            <div class="col-xs-6">
+                                <p class="ciudad"><i class="fa fa-map-marker"></i> {{Eventor.localidad}}</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <p class="tlf-local"><i class="fa fa-phone"></i> {{Eventor.telefono}}</p>
+                            </div>
+                        {{else}}
+                            <div class="col-xs-12">
+                                <p class="ciudad"><i class="fa fa-map-marker"></i> {{Eventor.localidad}}, {{Eventor.CiudadEventor.nombre}}</p>
+                            </div>
+                        {{/if}}
+
+                    </div>
+                </div> <!-- fin bloq-izq -->
+
+                <div class="col-xs-12 col-sm-6">
+                    <div class="descr-evento descr-local">
+                        <p>{{{Eventor.resumeBr}}}</p>
+                        {{#if Eventor.web_link}}
+                            <a class="link_web" >{{Eventor.web_link}}</a>
+                        {{/if}}
+                    </div>
+                </div>
+
+                <div class="col-xs-12 direccion-evento">
+                    <p class="direcc">
+                        <span class="calle">{{Eventor.direccion}}. {{Eventor.localidad}}, {{Eventor.CiudadEventor.nombre}}</span>
+                        <span class="fullscreen"><a class="link_bigmap"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a></span>
+                        <div class="clearfix"></div>
+                    </p>
+                    <div id="local-map-canvas"></div>
+                </div>
+            </div>
+        </script>
+
+        <script id="mapa-tpl" type="text/template">
+            <div class="header-50">
+                <div class="head_sup">
+                    <a class="boton_atras pull-left"><i class="fa fa-arrow-left"></i></a>
+                    <a class="boton_inicio pull-left"><i class="fa fa-home"></i></a>
+
+                    <img src="simbolo.png" />
+
+                    <div class="menu_drop dropdown pull-right">
+                        <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
+                            <li><a class="link_eventos">Eventos</a></li>
+                            <li><a class="link_locales" >Organizadores</a></li>
+                            <li><a class="link_nuevos" ><i class="fa fa-exclamation-circle"></i> Nuevos eventos</a></li>
+                            <li><a class="link_favoritos" ><i class="fa fa-heart"></i> Favoritos</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a class="link_prefer" ><i class="fa fa-cog"></i> Preferencias</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a onclick="window.plugins.socialsharing.share('Descarga Pella de Ocio', 'Pella de Ocio', null, 'http://app.pelladeocio.com')"><i class="fa fa-share-alt"></i> Compartir App</a></li>
+                            <li><a class="link_acerca" ><i class="fa fa-info"></i> Acerca de ...</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="container wrapper-absolute-50 evento-detalle">
+                <div class="row cuadro categ_{{id_categoria}}">
+                    <div class="col-xs-12 direccion-evento">
+                            <div id="big-map-canvas"></div>
+                            <p class="mapadirec">{{direccion}}. {{localidad}}, {{ciudad}}</p>
+                    </div>   
+                </div>
+            </div>
+        </script>
+
+        <script id="acerca-tpl" type="text/template">
+            <div class="header-50">
+                <div class="head_sup">
+                    <a class="boton_inicio pull-left"><i class="fa fa-home"></i></a>
+
+                    <img src="simbolo.png" />
+
+                    <div class="menu_drop dropdown pull-right">
+                        <a class="dropdown-toggle" id="dropdownMenuMain" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuMain">
+                            <li><a class="link_eventos">Eventos</a></li>
+                            <li><a class="link_locales" >Organizadores</a></li>
+                            <li><a class="link_nuevos" ><i class="fa fa-exclamation-circle"></i> Nuevos eventos</a></li>
+                            <li><a class="link_favoritos" ><i class="fa fa-heart"></i> Favoritos</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a class="link_prefer" ><i class="fa fa-cog"></i> Preferencias</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a onclick="window.plugins.socialsharing.share('Descarga Pella de Ocio', 'Pella de Ocio', null, 'http://app.pelladeocio.com')"><i class="fa fa-share-alt"></i> Compartir App</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="container wrapper-absolute-50 acerca">
+                <div class="row cuadro">
+                    <div class="col-xs-12">
+                        <h1>Pella de Ocio</h1>
+                        <h2>versión 1.1.3</h2>
+                        <p>Si quieres publicar tus eventos en <b>Pella de Ocio</b>, escribe a info@pelladeocio.com y te informamos de cómo hacerlo</p>
+                        <p>Para cualquier consulta o sugerencia, escribe a soporte@pelladeocio.com</p>
+                        <ul>
+                            <li><a class="link_condic">Condiciones del Servicio</a></li>
+                            <li><a class="link_privacy">Política de Privacidad</a></li>
+                            <li><a class="link_ayuda">Ayuda</a></li>
+                        </ul>
+                    </div>   
+                </div>
+            </div>
+        </script>
+
+
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="lib/handlebars-v4.4.3.js"></script>
+        <script type="text/javascript" src="lib/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="lib/popper.min.js"></script>
+        <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+        <script type="text/javascript" src="lib/underscore-min.js"></script>
+        <script type="text/javascript" src="lib/backbone.js"></script>
+        <script type="text/javascript" src="lib/pageslider.js"></script>
+        
+        <script type="text/javascript" src="js/HomeView.js"></script>
+        <script type="text/javascript" src="js/EventoListItemView.js"></script>
+        <script type="text/javascript" src="js/models.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+    </body>
+</html>
