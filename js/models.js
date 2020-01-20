@@ -11,7 +11,7 @@ var EventoCollection = Backbone.Collection.extend({
     //url: "http://pelladeocio.com/appeventos",
     url: "http://apitest.pelladeocio.com/api/v1/eventos",
     
-    comparator: 'date',
+    //comparator: 'date',
 
 });
 
