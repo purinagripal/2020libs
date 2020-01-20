@@ -58,12 +58,14 @@
                 homeView = new HomeView({model: eventosList});
                 eventosList.fetch({reset: true, 
                                     success: function() {
+                                        alert('fetch success eventosList');
                                         console.log( 'fetch success eventosList' );                            
                                     },
                                     complete: function() {
-                                        //alert('fetch complete');
+                                        alert('fetch complete');
                                         console.log( 'router - fetch complete, oculta cargando' );
                                         console.log(eventosList);
+                                        alert(eventosList);
                                         eventosList.trigger("fcomplete");
                                         
                                         // renderiza eventos una vez descargados
