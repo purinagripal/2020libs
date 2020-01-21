@@ -57,19 +57,30 @@
                 // console.log('router entra en home');
                 homeView = new HomeView({model: eventosList});
                 eventosList.fetch({reset: true, 
-                                    success: function() {
+                                    success: function(model, response, options) {
                                         alert('fetch success eventosList');
-                                        console.log( 'fetch success eventosList' );                            
+                                        console.log( 'fetch success eventosList' );   
+                                        alert('model: '+JSON.stringify(model));
+                                        alert('response: '+JSON.stringify(response));
+                                        alert('options: '+JSON.stringify(options));                         
                                     },
                                     complete: function() {
-                                        alert('fetch complete');
                                         console.log( 'router - fetch complete, oculta cargando' );
                                         console.log(eventosList);
+
+                                        alert('fetch complete');
                                         alert(JSON.stringify(eventosList));
+
                                         eventosList.trigger("fcomplete");
                                         
                                         // renderiza eventos una vez descargados
                                         homeView.cargarEventos();
+                                    },
+                                    error: function(model, response, options){
+                                        alert('error');
+                                        alert('model: '+JSON.stringify(model));
+                                        alert('response: '+JSON.stringify(response));
+                                        alert('options: '+JSON.stringify(options));
                                     }
                 });
             } else {
