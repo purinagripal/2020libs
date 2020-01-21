@@ -104,7 +104,9 @@
 
     
     // console.log("window.historial: "+window.historial);
-    
+
+    $.support.cors = true;
+        
     var router = new AppRouter();
     Backbone.history.start();
     
