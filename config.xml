@@ -41,6 +41,10 @@
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
+
+    <!-- android only -->
+    <preference name="LoadUrlTimeoutValue" value="120000" /> <!-- para evitar el error de android -->
+
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
