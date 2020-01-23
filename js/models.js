@@ -7,9 +7,8 @@ var EventoCollection = Backbone.Collection.extend({
     model: Evento,
     fetchComplete: 0,
 
-    //url: "http://localhost/pelladeocio/appeventos",
-    url: "http://pelladeocio.com/appeventos",
-    //url: "http://apitest.pelladeocio.com/api/v1/eventos",
+    //url: "http://pelladeocio.com/appeventos",
+    url: "https://apitest.pelladeocio.com/api/v1/eventos",
     
     //comparator: 'date',
 
