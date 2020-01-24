@@ -43,7 +43,8 @@
     </platform>
 
     <!-- android only -->
-    <preference name="LoadUrlTimeoutValue" value="120000" /> <!-- para evitar el error de android -->
+    <!-- para evitar el error de android -->
+    <preference name="LoadUrlTimeoutValue" value="120000" /> 
 
     <platform name="ios">
         <allow-intent href="itms:*" />
