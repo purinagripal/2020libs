@@ -17,7 +17,7 @@
  specific language governing permissions and limitations
  under the License.
 -->
-<widget id="es.mepwebs.lanzarote.cultura" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="es.mepwebs.lanzarote.cultura" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Cultura Lanzarote</name>
     <description>
         App Cabildo en desarrollo
@@ -31,7 +31,12 @@
     
     <!-- all platforms -->
     <preference name="phonegap-version" value="cli-9.0.0" />
-    
+
+    <!-- android only -->
+    <preference name="android-minSdkVersion" value="19" /> <!-- para permitir cross domain en http -->
+    <preference name="android-installLocation" value="auto" />
+    <preference name="LoadUrlTimeoutValue" value="120000" /> <!-- para evitar el error de android -->
+
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
     <plugin name="cordova-plugin-whitelist" />
     <access origin="*" />
@@ -40,12 +45,12 @@
     
     <platform name="android">
         <allow-intent href="market:*" />
+        <!-- para permitir cross domain en http -->
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
     </platform>
-
-    <!-- android only -->
-    <!-- para evitar el error de android -->
-    <preference name="LoadUrlTimeoutValue" value="120000" /> 
-
+    
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
